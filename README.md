@@ -1,13 +1,14 @@
 # cmake-project-base
 A base repo for cmake-based project (Linux only)
 
+Platform | Build status
+---------|-------------:
+Linux<br>Mac OSX | [![Build Status](https://travis-ci.org/chunmeng/cmake-project-base.svg?branch=master)](https://travis-ci.org/chunmeng/cmake-project-base)
+
 # Build dependency
 This was tested on a dev machine with many build essentials already installed.
 So the actual needed packages for this project to build is not verified.
 
-```
-sudo apt install cmake -y
-```
 - [ ] Use a clean docker image to confirm the build dependency
 
 # Reference
@@ -30,21 +31,27 @@ cmake -H. -Bbuild
 
 2. Build the executable and test binaries
 ```
-make -C ./build
+cmake --build ./build
 ```
 
 3. The executable binary is under build/src/
 
 4. The test binary is under build/test/
-4.1 It can be runs individually
-```
-./build/test/Test
-```
-4.2 Using ctest (Need to change directory)
-```
-cd build && ctest -V
-```
-4.2 Using make with target under project root directory
-```
-make -C ./build test
-```
+   - Run the test
+    ```
+    cmake --build ./build --target test
+    ```
+
+- Alternatively
+   - It can be runs individually
+    ```
+    ./build/test/Test
+    ```
+   - Or using ctest (Need to change directory)
+    ```
+    cd build && ctest -V
+    ```
+   - Or using make with target under project root directory
+    ```
+    make -C ./build test
+    ```
